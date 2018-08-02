@@ -12,3 +12,6 @@ class Settings:
     def get(self):
         self._isUpdated = False
         return self._values.copy()
+
+    def get_is_updated(self):
+        return self._isUpdated
