@@ -1,17 +1,15 @@
+from threading import Lock
+
+
 class LockedImage:
     def __init__(self):
-        self._img = None
-        self._locked = False
+        self.__img = None
+        self.__lock = Lock()
 
     def set(self, img):
-        if not self._locked:
-            self._img = img
+        with self.__lock:
+            self.__img = img
 
     def get(self):
-        return self._img
-
-    def lock(self):
-        self._locked = True
-
-    def unlock(self):
-        self._locked = False
+        with self.__lock:
+            return self.__img
