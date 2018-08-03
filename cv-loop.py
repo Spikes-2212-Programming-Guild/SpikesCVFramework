@@ -27,6 +27,10 @@ def start(cameras, pipelines, output_consumer=lambda: None, settings_supplier=la
     settings_thread = Thread(target=settings_loop, args=(settings_supplier, pipeline_settings,
                                                          camera_settings, lambda: capturing))
 
+    pipeline_thread.start()
+    camera_thread.start()
+    settings_thread.start()
+
 
 def close():
     global capturing
