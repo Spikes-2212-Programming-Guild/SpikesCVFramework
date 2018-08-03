@@ -7,7 +7,8 @@ class PipelineManager:
             self.current_pipeline = pipelines.keys()[0]
 
     def set_pipeline(self, pipeline_id):
-        self.current_pipeline = pipeline_id
+        if pipeline_id in self.pipelines.keys():
+            self.current_pipeline = pipeline_id
 
     def process(self, img):
         pipeline = self.pipelines.get(self.current_pipeline, None)
