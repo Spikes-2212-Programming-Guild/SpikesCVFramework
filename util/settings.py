@@ -1,5 +1,6 @@
 from threading import Lock
 
+
 class Settings:
     def __init__(self):
         self.__values = dict()
@@ -18,6 +19,6 @@ class Settings:
             self.__isUpdated = False
             return self.__values.copy()
 
-    def get_is_updated(self):
+    def is_updated(self):
         with self.__lock:
             return self.__isUpdated
