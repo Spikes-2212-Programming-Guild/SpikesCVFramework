@@ -10,3 +10,4 @@ def camera_loop(locked_image, camera_manager, settings, running):
         img = camera_manager.get_image()
         if img is not None:
             locked_image.set(img)
+    camera_manager.release()
