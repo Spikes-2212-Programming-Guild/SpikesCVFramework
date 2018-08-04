@@ -1,12 +1,8 @@
 from threading import Thread
 
-from .loops.camera_loop import camera_loop
-from .loops.pipeline_loop import pipeline_loop
-from .loops.settings_loop import settings_loop
-from .util.camera_manager import CameraManager
-from .util.locked_image import LockedImage
-from .util.pipeline_manager import PipelineManager
-from .util.settings import Settings
+from scvf.loops import camera_loop, pipeline_loop, settings_loop
+from scvf.util import PipelineManager, LockedImage, CameraManager, Settings
+
 
 running = False
 
