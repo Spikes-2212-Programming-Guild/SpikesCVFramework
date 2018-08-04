@@ -31,6 +31,6 @@ def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_suppl
     settings_thread.start()
 
 
-def close():
+def end():
     global capturing
     capturing = False
