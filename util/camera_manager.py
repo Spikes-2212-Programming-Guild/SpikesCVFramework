@@ -1,4 +1,5 @@
 from subprocess import call
+
 from cv2 import VideoCapture
 
 
@@ -16,7 +17,6 @@ class CameraManager:
                 self.port = port
             except ValueError as e:
                 pass
-
 
     def set_exposure(self, exposure):
         call(f"v412-ctl --device=/dev/video{self.port} -c exposure_auto=1 -c exposure_absolute={exposure}")

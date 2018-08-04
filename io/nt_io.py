@@ -1,9 +1,6 @@
 import cv2
 from networktables import NetworkTables
 
-nt = None
-contourCount = 2
-
 
 class NetworkTableIO:
     def __init__(self, ip, name):
