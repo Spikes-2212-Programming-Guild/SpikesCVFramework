@@ -25,3 +25,6 @@ class CameraManager:
         success, img = self.camera.read()
         if success:
             return img
+
+    def release(self):
+        self.camera.release()
