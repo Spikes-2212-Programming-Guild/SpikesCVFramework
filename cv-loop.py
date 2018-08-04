@@ -12,14 +12,14 @@ from .util.settings import Settings
 capturing = False
 
 
-def start(cameras, pipelines, output_consumer=lambda: None, settings_supplier=lambda: None):
+def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda: None):
     global capturing
     img = LockedImage()
     pipeline_settings = Settings()
     camera_settings = Settings()
 
     pipeline_manager = PipelineManager(pipelines)
-    camera_manager = CameraManager(cameras)
+    camera_manager = CameraManager(camera_port)
 
     pipeline_thread = Thread(target=pipeline_loop, args=(img, pipeline_manager, pipeline_settings,
                                                          output_consumer, lambda: capturing))
