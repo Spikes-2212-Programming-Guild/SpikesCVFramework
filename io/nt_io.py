@@ -30,5 +30,5 @@ class NetworkTableIO:
             self.nt.putNumber("numberOfContours", len(contours))
 
         # turning off isUpdated flag for contours that were not updated
-        for i in range(len(contours), contourCount):
+        for i in range(len(contours), self.contour_count):
             self.nt.putBoolean(f"isUpdated{i}", False)
