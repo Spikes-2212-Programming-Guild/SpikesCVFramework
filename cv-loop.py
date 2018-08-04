@@ -8,11 +8,11 @@ from .util.locked_image import LockedImage
 from .util.pipeline_manager import PipelineManager
 from .util.settings import Settings
 
-capturing = False
+running = False
 
 
 def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda: None):
-    global capturing
+    global running
     img = LockedImage()
     pipeline_settings = Settings()
     camera_settings = Settings()
@@ -21,10 +21,10 @@ def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_suppl
     camera_manager = CameraManager(camera_port)
 
     pipeline_thread = Thread(target=pipeline_loop, args=(img, pipeline_manager, pipeline_settings,
-                                                         output_consumer, lambda: capturing))
-    camera_thread = Thread(target=camera_loop, args=(img, camera_manager, camera_settings, lambda: capturing))
+                                                         output_consumer, lambda: running))
+    camera_thread = Thread(target=camera_loop, args=(img, camera_manager, camera_settings, lambda: running))
     settings_thread = Thread(target=settings_loop, args=(settings_supplier, pipeline_settings,
-                                                         camera_settings, lambda: capturing))
+                                                         camera_settings, lambda: running))
 
     pipeline_thread.start()
     camera_thread.start()
@@ -32,5 +32,5 @@ def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_suppl
 
 
 def end():
-    global capturing
-    capturing = False
+    global running
+    running = False
