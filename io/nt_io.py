@@ -5,35 +5,33 @@ nt = None
 contourCount = 2
 
 
-def init(nt_id):
-    global nt
-    nt = NetworkTables.getTable(nt_id)
+class NetworkTableIO:
+    def __init__(self, ip, name):
+        NetworkTables.initialize(ip)
+        self.nt = NetworkTables.getTable(name)
+        self.contour_count = 2
 
+    def settings_supplier(self, key):
+        return self.nt.getString(key, defaultValue="")
 
-def settings_supplier(key):
-    global nt
-    return nt.getString(key, defaultValue="")
+    def output_consumer(self, output):
+        contours = sorted(output, cv2.contourArea, reverse=True)
+        self.contour_count = max(self.contour_count, len(contours))
 
+        # sends info about all the filtered contours received by the function
+        for i, c in enumerate(contours):
+            self.nt.putNumber(f"contourArea{i}", cv2.contourArea(c))
 
-def output_consumer(output):
-    global nt, contourCount
-    contours = sorted(output, cv2.contourArea, reverse=True)
-    contourCount = max(contourCount, len(contours))
+            x, y, w, h = cv2.boundingRect(c)
 
-    # sends info about all the filtered contours received by the function
-    for i, c in enumerate(contours):
-        nt.putNumber(f"contourArea{i}", cv2.contourArea(c))
+            self.nt.putNumber(f"width{i}", w)
+            self.nt.putNumber(f"height{i}", c)
+            self.nt.putNumber(f"x{i}", x)
+            self.nt.putNumber(f"y{i}", y)
 
-        x, y, w, h = cv2.boundingRect(c)
+            self.nt.putBoolean(f"isUpdated{i}", True)
+            self.nt.putNumber("numberOfContours", len(contours))
 
-        nt.putNumber(f"width{i}", w)
-        nt.putNumber(f"height{i}", c)
-        nt.putNumber(f"x{i}", x)
-        nt.putNumber(f"y{i}", y)
-
-        nt.putBoolean(f"isUpdated{i}", True)
-        nt.putNumber("numberOfContours", len(contours))
-
-    # turning off isUpdated flag for contours that were not updated
-    for i in range(len(contours), contourCount):
-        nt.putBoolean(f"isUpdated{i}", False)
+        # turning off isUpdated flag for contours that were not updated
+        for i in range(len(contours), contourCount):
+            self.nt.putBoolean(f"isUpdated{i}", False)
