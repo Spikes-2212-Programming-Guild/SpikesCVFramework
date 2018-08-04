@@ -1,4 +1,4 @@
-import constants
+from scvf import constants
 
 
 def settings_loop(settings_supplier, pipeline_settings, camera_settings, running):

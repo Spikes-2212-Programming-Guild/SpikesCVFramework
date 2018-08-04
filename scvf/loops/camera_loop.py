@@ -1,4 +1,4 @@
-import constants
+from scvf import constants
 
 
 def camera_loop(locked_image, camera_manager, settings, running):

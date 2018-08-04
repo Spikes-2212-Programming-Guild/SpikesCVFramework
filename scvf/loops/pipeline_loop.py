@@ -1,4 +1,4 @@
-import constants
+from scvf import constants
 
 
 def pipeline_loop(locked_image, pipeline_manager, settings, output_consumer, running):
