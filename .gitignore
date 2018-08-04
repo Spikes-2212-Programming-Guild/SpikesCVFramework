@@ -1,4 +1,4 @@
 /.idea/
-/buid/
+build/
 dist/
 scvf.egg-info
