@@ -13,4 +13,9 @@ class PipelineManager:
     def process(self, img):
         pipeline = self.pipelines.get(self.current_pipeline, None)
         if pipeline is not None:
-            return pipeline.process(img)
+            pipeline.process(img)
+
+    def get_contours(self):
+        pipeline = self.pipelines.get(self.current_pipeline, None)
+        if pipeline is not None:
+            return pipeline.filter_contours_output
