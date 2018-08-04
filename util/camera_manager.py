@@ -9,9 +9,14 @@ class CameraManager:
 
     def set_camera(self, port):
         if self.port is not port:
-            self.camera.release()
-            self.camera = VideoCapture(port)
-            self.port = port
+            try:
+                port = int(port)
+                self.camera.release()
+                self.camera = VideoCapture(port)
+                self.port = port
+            except ValueError as e:
+                pass
+
 
     def set_exposure(self, exposure):
         call(f"v412-ctl --device=/dev/video{self.port} -c exposure_auto=1 -c exposure_absolute={exposure}")
