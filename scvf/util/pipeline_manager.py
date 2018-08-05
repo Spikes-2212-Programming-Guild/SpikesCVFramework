@@ -4,7 +4,7 @@ class PipelineManager:
         if len(pipelines.keys()) < 1:
             self.current_pipeline = ""
         else:
-            self.current_pipeline = pipelines.keys()[0]
+            self.current_pipeline = list(pipelines.keys())[0]
 
     def set_pipeline(self, pipeline_id):
         if pipeline_id in self.pipelines.keys():
