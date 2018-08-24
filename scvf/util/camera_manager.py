@@ -19,8 +19,14 @@ class CameraManager:
                 pass
 
     def set_exposure(self, exposure):
-        call(f"v4l2-ctl --device=/dev/video{if self.port is None 0 else self.port}"
-             f" -c exposure_auto=1 -c exposure_absolute={if exposure is None 0 else exposure}")
+        def safe_format(x):
+            if x is None:
+                return 0
+            return x
+
+        call(f"v4l2-ctl --device=/dev/video{safe_format(self.port)}"
+             f" -c exposure_auto=1 -c exposure_absolute={safe_format(exposure)}")
+
     def get_image(self):
         success, img = self.camera.read()
         if success:
