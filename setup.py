@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="scvf",
-    version="0.0.7",
+    version="0.0.8",
     author="Spikes#2212",
     author_email="spikesno2212@gmail.com",
     description="a framework that wraps opencv for our needs in FRC",
