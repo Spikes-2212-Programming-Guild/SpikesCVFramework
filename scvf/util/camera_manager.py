@@ -19,7 +19,7 @@ class CameraManager:
                 pass
 
     def set_exposure(self, exposure):
-        call(f"v412-ctl --device=/dev/video{self.port} -c exposure_auto=1 -c exposure_absolute={exposure}")
+        call(f"v4l2-ctl --device=/dev/video{self.port} -c exposure_auto=1 -c exposure_absolute={exposure}")
 
     def get_image(self):
         success, img = self.camera.read()
