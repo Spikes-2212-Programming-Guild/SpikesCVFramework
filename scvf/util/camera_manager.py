@@ -23,8 +23,8 @@ class CameraManager:
             if x is None:
                 return 0
             return x
-        call(['v4l2-ctl', f'--device=/dev/video{safe_format(self.port)}', '-c',
-              'exposure_auto=1', '-c', f'exposure_absolute={safe_format(exposure)}'])
+        call(['v4l2-ctl', '--device=/dev/video{}'.format(safe_format(self.port)), '-c',
+              'exposure_auto=1', '-c', 'exposure_absolute={}'.format(safe_format(exposure))])
 
     def get_image(self):
         success, img = self.camera.read()

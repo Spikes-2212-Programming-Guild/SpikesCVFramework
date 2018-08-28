@@ -21,14 +21,14 @@ class NetworkTableIO:
 
             x, y, w, h = cv2.boundingRect(c)
 
-            self.nt.putNumber(f"width{i}", w)
-            self.nt.putNumber(f"height{i}", c)
-            self.nt.putNumber(f"x{i}", x)
-            self.nt.putNumber(f"y{i}", y)
+            self.nt.putNumber("width{}".format(i), w)
+            self.nt.putNumber("height{}".format(i), c)
+            self.nt.putNumber("x{}".format(i), x)
+            self.nt.putNumber("y{}".format(i), y)
 
             self.nt.putBoolean(f"isUpdated{i}", True)
             self.nt.putNumber("numberOfContours", len(contours))
 
         # turning off isUpdated flag for contours that were not updated
         for i in range(len(contours), self.contour_count):
-            self.nt.putBoolean(f"isUpdated{i}", False)
+            self.nt.putBoolean("isUpdated{}".format(i), False)
