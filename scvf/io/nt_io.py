@@ -26,7 +26,7 @@ class NetworkTableIO:
             self.nt.putNumber("x{}".format(i), x)
             self.nt.putNumber("y{}".format(i), y)
 
-            self.nt.putBoolean(f"isUpdated{i}", True)
+            self.nt.putBoolean("isUpdated{}".format(i), True)
             self.nt.putNumber("numberOfContours", len(contours))
 
         # turning off isUpdated flag for contours that were not updated
