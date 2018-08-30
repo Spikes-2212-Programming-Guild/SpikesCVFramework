@@ -1,7 +1,7 @@
 from threading import Thread
 
 from scvf.loops import camera_loop, pipeline_loop, settings_loop
-from scvf.util import PipelineManager, LockedImage, CameraManager, Settings
+from scvf.util import PipelineManager, SafeImage, CameraManager, Settings
 
 
 running = False
@@ -9,7 +9,7 @@ running = False
 
 def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda: None):
     global running
-    img = LockedImage()
+    img = SafeImage()
     pipeline_settings = Settings()
     camera_settings = Settings()
 
