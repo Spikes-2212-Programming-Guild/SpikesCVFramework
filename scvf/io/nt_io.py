@@ -8,8 +8,11 @@ class NetworkTableIO:
         self.nt = NetworkTables.getTable(name)
         self.contour_count = 2
 
-    def settings_supplier(self, key):
-        return self.nt.getString(key, defaultValue="")
+    def settings_supplier(self, callback):
+        def entry_listener(table, key, value):
+            callback(key, value)
+
+        self.nt.addEntryListener(entry_listener)
 
     def output_consumer(self, output):
         contours = sorted(output, cv2.contourArea, reverse=True)
