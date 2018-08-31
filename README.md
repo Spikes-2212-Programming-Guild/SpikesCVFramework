@@ -13,12 +13,12 @@ $ python3 -m pip install --index-url https://test.pypi.org/simple/ scvf
 ```
 ## API
 
-####communication through network tables
+#### communication through network tables
 use the ```pipeline_name``` key to send the pipeline_name <br/>
 use the ```camera_id``` key to send the camera id <br/>
 use the ```exposure``` key to send the exposure for the camera
 
-####pipeline compatibility
+#### pipeline compatibility
 Though we recommend grip as the main tool to generate cv2 pipelines
 using grip is not strictly required <br/>
 You can provide any object to server as a pipeline as long as it contains the next two methods: <br>
