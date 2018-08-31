@@ -1,6 +1,6 @@
 from threading import Thread
 
-from scvf.loops import camera_loop, pipeline_loop, settings_loop
+from scvf.loops import camera_loop, pipeline_loop, settings_callback
 from scvf.util import PipelineManager, SafeImage, CameraManager, Settings
 
 
@@ -19,12 +19,10 @@ def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_suppl
     pipeline_thread = Thread(target=pipeline_loop, args=(img, pipeline_manager, pipeline_settings,
                                                          output_consumer, lambda: running))
     camera_thread = Thread(target=camera_loop, args=(img, camera_manager, camera_settings, lambda: running))
-    settings_thread = Thread(target=settings_loop, args=(settings_supplier, pipeline_settings,
-                                                         camera_settings, lambda: running))
     running = True
+    settings_supplier(settings_callback)
     pipeline_thread.start()
     camera_thread.start()
-    settings_thread.start()
 
 
 def end():
