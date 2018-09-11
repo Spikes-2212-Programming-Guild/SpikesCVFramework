@@ -7,7 +7,7 @@ from scvf.util import PipelineManager, SafeImage, CameraManager, Settings
 running = False
 
 
-def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda: None):
+def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda x: None):
     global running
     img = SafeImage()
     pipeline_settings = Settings()
