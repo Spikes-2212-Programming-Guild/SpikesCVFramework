@@ -4,15 +4,14 @@ from threading import Lock
 class SafeImage:
     def __init__(self):
         self.lock = Lock()
-        self.old_img = None
-        self.new_img = None
+        self.image_container = []
 
     def set(self, img):
-        while self.lock:
-            self.new_img = img
+        with self.lock:
+            if len(self.image_container) == 0:
+                self.image_container.append(img)
 
     def get(self):
         with self.lock:
-            b = self.old_img
-            self.old_img = self.new_img
-            return b
+            if len(self.image_container) != 0:
+                return self.image_container.pop()
