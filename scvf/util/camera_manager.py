@@ -8,12 +8,6 @@ class CameraManager:
         self.port = port
         self.camera = VideoCapture(port)
 
-    def __enter__(self):
-        print("using CameraManager as a context manager")
-
-    def __exit__(self, *args):
-        self.camera.release()
-
     def set_camera(self, port):
         if self.port is not port:
             try:
@@ -37,5 +31,9 @@ class CameraManager:
         success, img = self.camera.read()
         if success:
             return img
+
+
+    def release(self):
+        self.camera.release()
 
 
