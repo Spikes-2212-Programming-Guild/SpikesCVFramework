@@ -15,7 +15,7 @@ class NetworkTableIO:
         self.nt.addEntryListener(entry_listener)
 
     def output_consumer(self, output):
-        contours = sorted(output, cv2.contourArea, reverse=True)
+        contours = sorted(output, key=cv2.contourArea, reverse=True)
         self.contour_count = max(self.contour_count, len(contours))
 
         # sends info about all the filtered contours received by the function
