@@ -20,14 +20,14 @@ class NetworkTableIO:
 
         # sends info about all the filtered contours received by the function
         for i, c in enumerate(contours):
-            self.nt.putNumber("contourArea{}".format(cv2.contourArea(c)))
+            self.nt.putNumber("contourArea{}".format(i), cv2.contourArea(c))
 
             x, y, w, h = cv2.boundingRect(c)
 
-            self.nt.putNumber("width{}".format(w))
-            self.nt.putNumber("height{}".format(h))
-            self.nt.putNumber("x{}".format(x))
-            self.nt.putNumber("y{}".format(y))
+            self.nt.putNumber("width{}".format(i), w)
+            self.nt.putNumber("height{}".format(i), h)
+            self.nt.putNumber("x{}".format(i), x)
+            self.nt.putNumber("y{}".format(i), y)
 
             self.nt.putBoolean("isUpdated{}".format(i), True)
             self.nt.putNumber("numberOfContours", len(contours))
