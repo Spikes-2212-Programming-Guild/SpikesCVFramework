@@ -36,7 +36,7 @@ if you are using [grip](https://wpiroboticsprojects.github.io/GRIP/#/)
 to generate your pipelines keep in mind that the pipelines generated from it
  aren't compatible with scf out of the box due to differences between python3 and python2
  
-as of now, two changes are required:
+as of now, these changes are required:
 
 * change the enum for the [blur](https://docs.opencv.org/2.4/doc/tutorials/imgproc/gausian_median_blur_bilateral_filter/gausian_median_blur_bilateral_filter.html) type to a [python3-enum](https://docs.python.org/3/library/enum.html)
 * change the findContours function as instructed [here](https://stackoverflow.com/questions/25504964/opencv-python-valueerror-too-many-values-to-unpack)
