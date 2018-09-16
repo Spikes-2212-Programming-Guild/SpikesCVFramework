@@ -7,12 +7,18 @@ class SafeImage:
         self.image_container = []
 
     def set(self, img):
-        with self.lock:
-            if len(self.image_container) != 0:
-                self.image_container.pop()
-            self.image_container.append(img)
+        self.lock.acquire()
+        if len(self.image_container) != 0:
+            self.image_container.pop()
+        self.image_container.append(img)
+        self.lock.release()
 
     def get(self):
-        with self.lock:
+        self.lock.acquire()
+        val = None
+        try:
             if len(self.image_container) != 0:
-                return self.image_container.pop()
+                val = self.image_container.pop()
+        finally:
+            self.lock.release()
+            return val
