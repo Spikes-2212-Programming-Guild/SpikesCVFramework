@@ -34,7 +34,7 @@ scvf receives two functions that are responsibble for comunications with externa
 #### GRIP and SCVF compatibility
 if you are using [grip](https://wpiroboticsprojects.github.io/GRIP/#/)
 to generate your pipelines keep in mind that the pipelines generated from it
- aren't compatible with scf out of the box due to differences between python3 and python2
+ aren't compatible with scvf out of the box due to differences between python3 and python2
  
 as of now, these changes are required:
 
