@@ -9,7 +9,7 @@ class NetworkTableIO:
         self.contour_count = 2
 
     def settings_supplier(self, callback):
-        def entry_listener(table, key, value):
+        def entry_listener(table, key, value, isNew):
             callback(key, value)
 
         self.nt.addEntryListener(entry_listener)
