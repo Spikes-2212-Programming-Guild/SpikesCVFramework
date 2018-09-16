@@ -14,11 +14,11 @@ class SafeImage:
         self.lock.release()
 
     def get(self):
-        self.lock.acquire()
-        val = None
-        try:
-            if len(self.image_container) != 0:
+        if len(self.image_container) != 0:
+            self.lock.acquire()
+            val = None
+            try:
                 val = self.image_container.pop()
-        finally:
-            self.lock.release()
-            return val
+            finally:
+                self.lock.release()
+                return val
