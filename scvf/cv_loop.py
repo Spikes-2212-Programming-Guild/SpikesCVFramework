@@ -20,7 +20,7 @@ def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_suppl
                                                          output_consumer, lambda: running))
     camera_thread = Thread(target=camera_loop, args=(img, camera_manager, camera_settings, lambda: running))
     running = True
-    settings_supplier(settings_callback)
+    settings_supplier(settings_callback(camera_settings, pipeline_settings))
     pipeline_thread.start()
     camera_thread.start()
 
