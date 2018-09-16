@@ -8,11 +8,9 @@ class SafeImage:
 
     def set(self, img):
         with self.lock:
-            if len(self.image_container) == 0:
-                self.image_container.append(img)
-            else:
+            if len(self.image_container) != 0:
                 self.image_container.pop()
-                self.image_container.append(img)
+            self.image_container.append(img)
 
     def get(self):
         with self.lock:
