@@ -1,7 +1,7 @@
 from scvf import constants
 
 
-def camera_loop(locked_image, camera_manager, settings, running):
+def camera_loop(safe_image, camera_manager, settings, running):
     while running():
         if settings.is_updated():
             camera_manager.set_exposure(settings.get().get(constants.exposure_settings_key, ""))
@@ -9,5 +9,5 @@ def camera_loop(locked_image, camera_manager, settings, running):
 
         img = camera_manager.get_image()
         if img is not None:
-            locked_image.set(img)
+            safe_image.set(img)
     camera_manager.release()

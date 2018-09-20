@@ -1,17 +1,17 @@
 class Settings:
     def __init__(self):
-        self.__values = dict()
-        self.__isUpdated = False
+        self.values = dict()
+        self.isUpdated = False
 
     def update(self, **values):
         for key in values.keys():
-            if self.__values.get(key, "") != values.get(key, ""):
-                self.__isUpdated = True
-                self.__values[key] = values[key]
+            if self.values.get(key, "") != values.get(key, ""):
+                self.isUpdated = True
+                self.values[key] = values[key]
 
     def get(self):
-        self.__isUpdated = False
-        return self.__values.copy()
+        self.isUpdated = False
+        return self.values.copy()
 
     def is_updated(self):
-        return self.__isUpdated
+        return self.isUpdated
