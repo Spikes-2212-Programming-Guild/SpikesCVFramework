@@ -1,4 +1,4 @@
-class Settings:
+class Settings(dict):
     def __init__(self):
         self.values = dict()
         self.isUpdated = False
@@ -9,9 +9,8 @@ class Settings:
                 self.isUpdated = True
                 self.values[key] = values[key]
 
-    def get(self):
-        self.isUpdated = False
-        return self.values.copy()
+    def get(self, k, default):
+        return self.values.get(k, default)
 
     def is_updated(self):
         return self.isUpdated
