@@ -1,4 +1,4 @@
-class SafeImage:
+class ImageContainer:
     def __init__(self):
         self.img = None
 
