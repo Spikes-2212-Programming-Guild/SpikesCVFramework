@@ -1,15 +1,15 @@
 from threading import Thread
 
 from scvf.loops import camera_loop, pipeline_loop, settings_callback
-from scvf.util import PipelineManager, SafeImage, CameraManager, Settings
-
+from scvf.util import PipelineManager, ImageContainer, CameraManager, Settings
+import numpy
 
 running = False
 
 
 def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda x: None):
     global running
-    img = SafeImage()
+    img = ImageContainer()
     pipeline_settings = Settings()
     camera_settings = Settings()
 
