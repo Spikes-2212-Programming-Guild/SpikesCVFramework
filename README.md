@@ -9,7 +9,7 @@ in a way that is efficient and elegant.
 Installation Instructions:
 
 ```
-$ python3 -m pip install --index-url https://test.pypi.org/simple/ scvf
+$ python3 -m pip install scvf
 ```
 ## API
 
