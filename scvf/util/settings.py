@@ -1,24 +1,16 @@
-from threading import Lock
-
-
-class Settings:
+class Settings(dict):
     def __init__(self):
-        self.__values = dict()
-        self.__isUpdated = False
-        self.__lock = Lock()
+        self.values = dict()
+        self.isUpdated = False
 
     def update(self, **values):
-        with self.__lock:
-            for key in values.keys():
-                if self.__values.get(key, "") != values.get(key, ""):
-                    self.__isUpdated = True
-                    self.__values[key] = values[key]
+        for key in values.keys():
+            if self.values.get(key, "") != values.get(key, ""):
+                self.isUpdated = True
+                self.values[key] = values[key]
 
-    def get(self):
-        with self.__lock:
-            self.__isUpdated = False
-            return self.__values.copy()
+    def get(self, k, default):
+        return self.values.get(k, default)
 
     def is_updated(self):
-        with self.__lock:
-            return self.__isUpdated
+        return self.isUpdated
