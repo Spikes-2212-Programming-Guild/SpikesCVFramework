@@ -42,5 +42,7 @@ as of now, these changes are required:
 * change the findContours function as instructed [here](https://stackoverflow.com/questions/25504964/opencv-python-valueerror-too-many-values-to-unpack)
 * add a ```get_output()``` method that is compatible with the API specified above
 
+##### Opencv 4
+* Switch between the `im2` and contour `contours` variables in the `filter_contours` function of your pipeline
 #### IO implementations
 * make sure that your custom ```output_consumer``` is compatible with the output provided by your pipelines.
