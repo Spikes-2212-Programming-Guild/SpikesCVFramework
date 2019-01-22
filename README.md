@@ -26,9 +26,9 @@ You can provide any object to server as a pipeline as long as it contains the ne
 ```get_output()``` - a method that returns the output of the processing
 
 #### IO functions 
-scvf receives two functions that are responsibble for comunications with external data sources. <br/>
+scvf receives two functions that are responsible for communications with external data sources. <br/>
 1. ```settings_supplier(callback)``` this function receives settings and supplies them to callback provided to it.
-2. ```output_consumber(output)``` this function sends the output of the image processing to it's next destination
+2. ```output_consumer(output)``` this function sends the output of the image processing to it's next destination
 ## Notes
 
 #### GRIP and SCVF compatibility
