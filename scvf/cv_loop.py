@@ -7,6 +7,7 @@ import numpy
 # This flag tells the loop wheather it should run. It is switched to True on start and False on end.
 running = False
 
+#Todo optimize all functions with numba
 
 def start(pipelines, camera_port=0, output_consumer=lambda: None, settings_supplier=lambda x: None):
     """

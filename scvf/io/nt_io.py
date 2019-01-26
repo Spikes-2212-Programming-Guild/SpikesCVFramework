@@ -10,11 +10,13 @@ class NetworkTableIO:
 
     def settings_supplier(self, callback):
         def entry_listener(table, key, value, isNew):
+            # Todo check if the setting is new before applying it
             callback(key, value)
 
         self.nt.addEntryListener(entry_listener)
 
     def output_consumer(self, output):
+        # Todo make this function receive pipeline and not the output and change the readme accordingly
         contours = sorted(output, key=cv2.contourArea, reverse=True)
         self.contour_count = max(self.contour_count, len(contours))
 
